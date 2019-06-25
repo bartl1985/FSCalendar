@@ -301,7 +301,10 @@ typedef NS_ENUM(NSUInteger, FSCalendarOrientation) {
         }
         
         self.calendarHeaderView.frame = CGRectMake(0, 0, self.fs_width, headerHeight);
-        self.calendarWeekdayView.frame = CGRectMake(0, self.calendarHeaderView.fs_bottom, self.contentView.fs_width, weekdayHeight);
+        self.calendarWeekdayView.frame = CGRectMake(self.sectionInsets.left,
+                                                    self.calendarHeaderView.fs_bottom,
+                                                    self.contentView.fs_width - self.sectionInsets.left - self.sectionInsets.right,
+                                                    weekdayHeight);
 
         _deliver.frame = CGRectMake(self.calendarHeaderView.fs_left, self.calendarHeaderView.fs_top, self.calendarHeaderView.fs_width, headerHeight+weekdayHeight);
         _deliver.hidden = self.calendarHeaderView.hidden;
@@ -646,6 +649,14 @@ typedef NS_ENUM(NSUInteger, FSCalendarOrientation) {
 }
 
 #pragma mark - Properties
+
+- (UIEdgeInsets)sectionInsets {
+    return self.collectionViewLayout.sectionInsets;
+}
+
+- (void)setSectionInsets:(UIEdgeInsets)sectionInsets {
+    self.collectionViewLayout.sectionInsets = sectionInsets;
+}
 
 - (void)setScrollDirection:(FSCalendarScrollDirection)scrollDirection
 {
