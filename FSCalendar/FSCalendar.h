@@ -378,6 +378,7 @@ IB_DESIGNABLE
 @property (assign, nonatomic) IBInspectable CGFloat rowHeight;
 
 @property (assign, nonatomic) UIEdgeInsets sectionInsets;
+@property (assign, nonatomic) CGFloat daysAlpha;
 
 /**
  The calendar appearance used to control the global fonts、colors .etc

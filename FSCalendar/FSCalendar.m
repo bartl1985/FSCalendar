@@ -658,6 +658,14 @@ typedef NS_ENUM(NSUInteger, FSCalendarOrientation) {
     self.collectionViewLayout.sectionInsets = sectionInsets;
 }
 
+- (CGFloat)daysAlpha {
+    return self.collectionView.alpha;
+}
+
+- (void)setDaysAlpha:(CGFloat)daysAlpha {
+    self.collectionView.alpha = daysAlpha;
+}
+
 - (void)setScrollDirection:(FSCalendarScrollDirection)scrollDirection
 {
     if (_scrollDirection != scrollDirection) {
