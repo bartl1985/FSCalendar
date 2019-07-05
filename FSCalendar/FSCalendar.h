@@ -326,6 +326,7 @@ IB_DESIGNABLE
  The index of the first weekday of the calendar. Give a '2' to make Monday in the first column.
  */
 @property (assign, nonatomic) IBInspectable NSUInteger firstWeekday;
+@property (strong, nonatomic) NSTimeZone *timeZone;
 
 /**
  The height of month header of the calendar. Give a '0' to remove the header.

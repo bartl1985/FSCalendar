@@ -50,7 +50,6 @@ typedef NS_ENUM(NSUInteger, FSCalendarOrientation) {
 
 @property (strong, nonatomic) NSCalendar *gregorian;
 @property (strong, nonatomic) NSDateFormatter *formatter;
-@property (strong, nonatomic) NSTimeZone *timeZone;
 
 @property (weak  , nonatomic) UIView                     *contentView;
 @property (weak  , nonatomic) UIView                     *daysContainer;
@@ -706,12 +705,23 @@ typedef NS_ENUM(NSUInteger, FSCalendarOrientation) {
 {
     if (_firstWeekday != firstWeekday) {
         _firstWeekday = firstWeekday;
-        _needsRequestingBoundingDates = YES;
-        [self invalidateDateTools];
-        [self invalidateHeaders];
-        [self.collectionView reloadData];
-        [self configureAppearance];
+        [self invalidate];
     }
+}
+
+- (void)setTimeZone:(NSTimeZone *)timeZone {
+    if (timeZone) {
+        _timeZone = timeZone;
+        [self invalidate];
+    }
+}
+
+- (void)invalidate {
+    _needsRequestingBoundingDates = YES;
+    [self invalidateDateTools];
+    [self invalidateHeaders];
+    [self.collectionView reloadData];
+    [self configureAppearance];
 }
 
 - (void)setToday:(NSDate *)today
