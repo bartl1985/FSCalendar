@@ -156,10 +156,6 @@ typedef NS_ENUM(NSUInteger, FSCalendarOrientation) {
     _firstWeekday = 1;
     [self invalidateDateTools];
     
-    _today = [self.gregorian dateBySettingHour:0 minute:0 second:0 ofDate:[NSDate date] options:0];
-    _currentPage = [self.gregorian fs_firstDayOfMonth:_today];
-    
-    
     _minimumDate = [self.formatter dateFromString:@"1970-01-01"];
     _maximumDate = [self.formatter dateFromString:@"2099-12-31"];
     
@@ -1301,6 +1297,9 @@ typedef NS_ENUM(NSUInteger, FSCalendarOrientation) {
     _formatter.calendar = _gregorian;
     _formatter.timeZone = _timeZone;
     _formatter.locale = _locale;
+    
+    _today = [self.gregorian dateBySettingHour:0 minute:0 second:0 ofDate:[NSDate date] options:0];
+    _currentPage = [self.gregorian fs_firstDayOfMonth:_today];
 }
 
 - (void)invalidateLayout
